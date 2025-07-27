@@ -16,6 +16,7 @@ use EightyNine\Reports\Contracts\HasHeader;
 use Filament\Facades\Filament;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
+use Filament\Panel;
 
 class Report extends Page implements HasActionsPanel, HasBody, HasFooter, HasForms, HasHeader
 {
@@ -32,7 +33,7 @@ class Report extends Page implements HasActionsPanel, HasBody, HasFooter, HasFor
 
     public ?string $icon = 'heroicon-o-document-text';
 
-    public static string $view = 'filament-reports::pages.report';
+    public string $view = 'filament-reports::pages.report';
 
     public ?string $group = null;
 
@@ -74,13 +75,13 @@ class Report extends Page implements HasActionsPanel, HasBody, HasFooter, HasFor
         return $this->group ?? __('filament-reports::menu-page.nav.group');
     }
 
-    public static function getRouteName(?string $panel = null): string
+    public static function getRouteName(?Panel $panel = null): string
     {
-        $panel ??= Filament::getCurrentPanel()->getId();
+        $panel ??= Filament::getCurrentPanel();
 
         return (string) str(static::getSlug())
             ->replace('/', '.')
-            ->prepend("filament.{$panel}.reports.");
+            ->prepend("filament.{$panel->getId()}.reports.");
     }
 
     public function getTableHeader(): Header
