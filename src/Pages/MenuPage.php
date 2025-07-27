@@ -2,15 +2,16 @@
 
 namespace EightyNine\Reports\Pages;
 
+use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
 
 class MenuPage extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'filament-reports::pages.menu-page';
+    protected string $view = 'filament-reports::pages.menu-page';
 
     public static function shouldRegisterNavigation(): bool
     {
