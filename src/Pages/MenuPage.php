@@ -6,6 +6,7 @@ use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
+use Filament\Panel;
 
 class MenuPage extends Page
 {
@@ -28,9 +29,9 @@ class MenuPage extends Page
         return reports()->getTitle();
     }
 
-    public static function getSlug(): string
+    public static function getSlug(?Panel $panel = null): string
     {
-        return reports()->getSlug() ?? static::getSlug();
+        return reports()->getSlug() ?? static::getSlug($panel);
     }
 
     public function getHeading(): string
